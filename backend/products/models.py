@@ -1,4 +1,5 @@
 from operator import mod
+from tkinter.messagebox import NO
 from unittest.util import _MAX_LENGTH
 from django.db import models
 
@@ -13,5 +14,10 @@ class Products(models.Model):
         return "%.2f" %(float(self.price) * 0.8)
 
     
-    def get_discount(self):
+    def get_discount(self, obj):
+        if not hasattr(obj, 'id'):
+            return None
+        if not isinstance(obj, Products):
+            return None
+
         return "112"
